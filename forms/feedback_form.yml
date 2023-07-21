@@ -1,0 +1,9 @@
+version: "3.0"
+
+forms:
+  feedback_form:
+    required_slots:
+      positive_feedback:
+        - type: from_text
+      negative_feedback:
+        - type: from_text

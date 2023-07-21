@@ -1,0 +1,79 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - give_feedback
+  - feedback_description
+  - positive_feedback_intent
+  - negative_feedback_intent
+  - summarize
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_ask_positive_feedback:
+    - text: "Sure, give me positive feedback:"
+  utter_ask_negative_feedback:
+    - text: "Great! Now, give me negative feedback:"
+  utter_thank_you_feedback:
+    - text: "Thank you for your feedback!"
+  utter_slots_values:
+    - text: Your feedbacks are {positive_feedback} and {negative_feedback}!
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+
+slots:
+  positive_feedback:
+    type: text
+    mappings:
+    - type: custom
+      action: action_set_positive_feedback
+      conditions:
+      - active_loop: positive_feedback_form
+  negative_feedback:
+    type: text
+    mappings:
+    - type: custom
+      action: action_set_negative_feedback
+      conditions:
+      - active_loop: negative_feedback_form
+
+forms:
+  positive_feedback_form:
+    required_slots:
+      - positive_feedback
+  negative_feedback_form:
+    required_slots:
+      - negative_feedback
+
+actions:
+  - action_submit_positive_feedback_form
+  - action_submit_negative_feedback_form
+  - action_set_negative_feedback
+  - action_set_positive_feedback
+  - action_summarize
