@@ -28,7 +28,7 @@ rasa run actions
 
 Open `index.html` in a web browser to chat with the chatbot. The chatbot will provide performance feedback based on user input.
 
-![Performance Bot Screenshot](path/to/your/performance bot screenshot.png)
+![Performance Bot Screenshot](performance bot screenshot.png)
 
 
 ---
